@@ -15,9 +15,9 @@ Route::group(['prefix'=>'blogs'], function (){
    Route::get('/index', 'BlogController@index')->name('blogs.index');
    Route::get('/create','BlogController@create' )->name('blogs.create');
    Route::post('/create','BlogController@store' )->name('blogs.store');
-   Route::get('/{id}/delete', 'BlogController@delete')->name('blogs.delete');
-   Route::post('/{id}/delete', 'BlogController@destroy')->name('blogs.destroy');
-   Route::get('/{id}/edit', 'BlogController@edit')->name('blogs.edit');
-   Route::post('/{id}/edit', 'BlogController@update')->name('blogs.update');
-   Route::get('/{id}', 'BlogController@show')->name('blogs.show');
+   Route::get('/{blogId}/delete', 'BlogController@delete')->name('blogs.delete');
+   Route::post('/{blogId}/delete', 'BlogController@destroy')->name('blogs.destroy');
+   Route::get('/{blogId}/edit', 'BlogController@edit')->name('blogs.edit');
+   Route::post('/{blogId}/edit', 'BlogController@update')->name('blogs.update');
+   Route::get('/{blogId}', 'BlogController@show')->name('blogs.show');
 });

@@ -34,23 +34,23 @@ class BlogController extends Controller
         return view('Blogs.create', compact('categories'));
     }
 
-    public function delete($id)
+    public function delete($blogId)
     {
-        $blog = Blog::find($id);
+        $blog = Blog::find($blogId);
         return view('Blogs/delete', compact('blog'));
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, $blogId)
     {
-        $blog = Blog::find($id);
+        $blog = Blog::find($blogId);
         $blog->delete();
         return redirect()->route('blogs.index');
 
     }
 
-    public function edit($id)
+    public function edit($blogId)
     {
-        $blog = Blog::find($id);
+        $blog = Blog::find($blogId);
         $categories = Category::all();
         $categoryId = $blog->category_id;
         for ($index = 0; $index < count($categories); $index++) {
@@ -65,9 +65,9 @@ class BlogController extends Controller
 
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $blogId)
     {
-        $blog = Blog::find($id);
+        $blog = Blog::find($blogId);
         $categories = Category::all();
         $blog->name = $request->name;
         $blog->contents = $request->contents;
@@ -75,13 +75,13 @@ class BlogController extends Controller
         $blog->description = $request->description;
         $blog->category_id = $_POST['category_id'];
         $blog->save();
-        return redirect()->route('blogs.edit', compact('$categories', 'id'));
+        return redirect()->route('blogs.edit', compact('$categories', 'blogId'));
 
     }
 
-    public function show($id)
+    public function show($blogId)
     {
-        $blog = Blog::find($id);
+        $blog = Blog::find($blogId);
         $categoryId = $blog->category_id;
         $category = Category::where('id',$categoryId)->first();
 
